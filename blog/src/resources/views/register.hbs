@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>{{title}}</h1>
+  <form action="/register" method="POST">
+    <div>
+      <label for="email">Tên đăng nhập:</label>
+      <input type="text" id="email" name="email" required>
+    </div>
+    <div>
+      <label for="password">Mật khẩu:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+      <label for="confirmPassword">Xác nhận mật khẩu:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+    </div>
+    <div>
+      <button type="submit">Đăng ký</button>
+    </div>
+  </form>
+</body>
+</html>
