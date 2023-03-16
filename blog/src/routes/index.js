@@ -4,8 +4,8 @@ const logoutRouter = require('./logout')
 const homeRouter= require('./home')
 
 function route(app) {
-    app.use('/login', loginRouter)
     app.use('/register', registerRouter)
+    app.use('/login', loginRouter)
     app.use('/logout', logoutRouter)
     
     app.use('/', homeRouter)

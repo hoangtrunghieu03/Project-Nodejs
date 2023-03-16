@@ -3,23 +3,34 @@
   <title>{{title}}</title>
 </head>
 <body>
-  <h1>{{title}}</h1>
-  <form action="/register" method="POST">
-    <div>
-      <label for="email">Tên đăng nhập:</label>
-      <input type="text" id="email" name="email" required>
+  <form class="form1" action="/register" method="POST" >
+    <h1>Đăng ký</h1>
+
+    <div class="form-group">
+      <label for="exampleInputFullname">Full Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="FullName">
     </div>
-    <div>
-      <label for="password">Mật khẩu:</label>
-      <input type="password" id="password" name="password" required>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
-    <div>
-      <label for="confirmPassword">Xác nhận mật khẩu:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <p>{{email}}</p>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     </div>
-    <div>
-      <button type="submit">Đăng ký</button>
+    
+    <div class="form-group">
+      <label for="exampleInputPassword1">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Password">
     </div>
+    <p>{{confirmPassword}}</p>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <p class="form-register">Đăng nhập tài khoản: <a href="./login">Đăng nhập</a></p>
+
 </body>
 </html>

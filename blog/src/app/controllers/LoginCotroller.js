@@ -6,10 +6,8 @@ const { response } = require('express');
 class LoginController {
   //[GET] /Login
   login(req, res) {
-    res.render('login', { 
-      title: 'Đăng nhập' 
-    });
-    // res.json(Login(res.params))
+    res.locals.title = 'Đăng nhập';
+    res.render('login');
   }
 
   // [POST] /login
@@ -20,17 +18,20 @@ class LoginController {
       // Tìm kiếm người dùng với email được cung cấp
       const user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ message: 'Email không hợp lệ' });
+        res.locals.email = 'Email không đúng';
+        return res.status(400).render('login');
       }
       
       // Kiểm tra tính hợp lệ của mật khẩu
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        return res.status(400).json({ message: 'mật khẩu không hợp lệ' });
+        res.locals.password = 'Password không đúng';
+        return res.status(400).render('login');
       }
       req.session.isLoggedIn = true;
       req.session.user = user;
-      return res.redirect('/');
+      return res.send('<script>alert("Đăng nhập thành công"); window.location.href = "/";</script>');
+      // return res.redirect('/');
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Lỗi máy chủ' });

@@ -1,46 +1,25 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+.form1 {
+  display: flex;  
+  flex-direction: column; 
+  justify-content: center; 
+  height: 64vh; 
+  margin: 0; 
 }
 
-h1 {
+.form1 > h1 {
   text-align: center;
 }
 
-form {
-  width: 300px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px #ccc;
+.form1 p {
+  color: red;
+  font-style: italic;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+.form-login {
+  text-align: center;
+  margin-top: -90px;
 }
-
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+ 
+.form-register {
+  text-align: center;
 }
-
-input[type="submit"] {
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-
-a {
-  color: #4CAF50;
-}
-
