@@ -6,6 +6,8 @@ const path = require('path')
 const { engine } = require('express-handlebars')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
+const session = require('express-session');
+const {authMiddleware} = require('./app/middlewares/AuthMiddleware')
 
 const route = require('./routes')
 
@@ -19,6 +21,14 @@ app.use(
         extended: true,
     }),
 );
+app.use(session({
+    secret: 'my-secret',
+    resave: true,
+    saveUninitialized: true,
+}));
+
+// Custom middlewares
+app.use(authMiddleware)
 
 app.use(morgan('combined'));
 
@@ -42,5 +52,5 @@ app.set('views', path.join(__dirname, 'resources','views'));
 route(app)
 
 app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}`),
+    console.log(`App listening at http://localhost:${port}/login`),
 );

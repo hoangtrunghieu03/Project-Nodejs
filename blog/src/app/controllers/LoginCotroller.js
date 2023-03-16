@@ -1,14 +1,15 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/Users');  
-const { response, request } = require('express');
-
+const User = require('../models/Users');
+const { response } = require('express');
 
 class LoginController {
   //[GET] /Login
   login(req, res) {
-    res.render('login', { title: 'Đăng nhập' });
-      // res.json(Login(res.params))
+    res.render('login', { 
+      title: 'Đăng nhập' 
+    });
+    // res.json(Login(res.params))
   }
 
   // [POST] /login
@@ -27,9 +28,9 @@ class LoginController {
       if (!isPasswordValid) {
         return res.status(400).json({ message: 'mật khẩu không hợp lệ' });
       }
-      await res.render('home', {user})
-      // res.json(user)
-      
+      req.session.isLoggedIn = true;
+      req.session.user = user;
+      return res.redirect('/');
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Lỗi máy chủ' });
