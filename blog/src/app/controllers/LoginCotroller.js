@@ -1,7 +1,5 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const User = require('../models/Users');
-const { response } = require('express');
+const bcrypt = require('bcrypt');
 
 class LoginController {
   //[GET] /Login
