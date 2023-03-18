@@ -9,7 +9,7 @@ function route(app) {
     app.use('/login', loginRouter)
     app.use('/logout', logoutRouter)
     app.use('/courses', coursesRouter)
-    
+
     app.use('/', homeRouter)
 
 } 
