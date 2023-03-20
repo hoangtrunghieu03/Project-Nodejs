@@ -25,13 +25,19 @@ class HomeController {
               ]
             }).lean();
 
-            res.render('search', {
-              courses,
-              isLoggedIn: req.session.isLoggedIn
-            });
-          } catch (err) {
-            console.log(err);
-            res.render('error', { message: 'Lỗi tìm kiếm' });
+            if (courses.length === 0) {
+              res.render('home', {
+                message: `Không tìm thấy "${query}" trong thư viện`,
+                isLoggedIn: req.session.isLoggedIn
+              });
+            } else {
+              res.render('home', {
+                courses,
+                isLoggedIn: req.session.isLoggedIn
+              });
+            }
+          } catch (error) { 
+            res.render('err')           
           }
         }
     }

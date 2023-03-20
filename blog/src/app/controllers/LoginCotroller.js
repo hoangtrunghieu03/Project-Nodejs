@@ -31,8 +31,7 @@ class LoginController {
       //return res.send('<script>alert("Đăng nhập thành công"); window.location.href = "/";</script>');
       return res.redirect('/');
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Lỗi máy chủ' });
+      res.render('err') 
     }
   };
 }
