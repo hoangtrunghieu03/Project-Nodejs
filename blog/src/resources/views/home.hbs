@@ -1,6 +1,6 @@
 {{!-- <h1>Xin chào, {{user.name}}!</h1>
 <p>Email của bạn là: {{user.email}}</p> --}}
-
+{{#if isLoggedIn}}
 <div class='container mt-4'>
     <div class='row'>
         <h1>{{message}}</h1>
@@ -26,3 +26,4 @@
         {{/each}}
     </div>
 </div>
+{{/if}}

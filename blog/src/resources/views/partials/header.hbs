@@ -16,6 +16,10 @@
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav ml-auto'>
                 <li class='nav-item dropdown'>
+                    <form class="d-flex" action="/search" method="GET">
+                        <input class="form-control me-2" type="text" name="query" placeholder="Enter keyword">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                     <a
                         class='nav-link dropdown-toggle'
                         href='#'
@@ -45,11 +49,6 @@
                             <a class='dropdown-item' href="/login">Đăng nhập</a>
                         {{/if}}
                     </div>
-
-                     <form class="d-flex" action="/search" method="GET">
-                        <input class="form-control me-2" type="text" name="query" placeholder="Enter keyword">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </li>
             </ul>
         </div>

@@ -34,6 +34,7 @@ class LoginController {
       res.render('err') 
     }
   };
+
 }
 
 module.exports = new LoginController();
