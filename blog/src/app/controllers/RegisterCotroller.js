@@ -36,7 +36,7 @@ class RegisterController {
     });
 
     await newUser.save();  
-    res.send('<script>alert("Đăng ký thành công"); window.location.href = "/";</script>');
+    res.send('<script>alert("Đăng ký thành công"); window.location.href = "/login";</script>');
     // res.render('/login');
   }
 
