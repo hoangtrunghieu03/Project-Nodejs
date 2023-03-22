@@ -1,9 +1,9 @@
 .form1 {    
-  display: flex;  
-  flex-direction: column; 
-  justify-content: center; 
+  flex-direction: column;   
   height: 64vh; 
-  margin: 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form1 > h1 {
@@ -69,7 +69,7 @@ $in-out-cubic: cubic-bezier(0.65, 0.05, 0.36, 1);
     animation-delay: $animation;
 }
 body{
-  overflow:hidden;
+//   overflow:hidden;
   font-family: 'Open Sans', sans-serif;
 }
 .not-found {

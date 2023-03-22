@@ -28,8 +28,8 @@ class LoginController {
       }
       req.session.isLoggedIn = true;
       req.session.user = user;
-      //return res.send('<script>alert("Đăng nhập thành công"); window.location.href = "/";</script>');
-      return res.redirect('/');
+      return res.send('<script>alert("Đăng nhập thành công"); window.location.href = "/";</script>');
+      // return res.redirect('/');
     } catch (error) {
       res.render('err') 
     }

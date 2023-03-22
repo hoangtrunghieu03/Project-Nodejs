@@ -1,6 +1,6 @@
 const authMiddleware = (req, res, next) => {
-  req.session.isLoggedInn == true
-  if (req.session.isLoggedIn) {
+  res.locals.isLoggedIn = req.session.isLoggedIn;
+  if (res.locals.isLoggedIn) {
     res.locals.user = req.session.user;
   } else {
     res.locals.user = null; 

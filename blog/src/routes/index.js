@@ -1,4 +1,5 @@
 const loginRouter = require('./login')
+const meRouter = require('./me');
 const registerRouter = require('./register')
 const logoutRouter = require('./logout')
 const coursesRouter = require('./courses')
@@ -9,6 +10,7 @@ function route(app) {
     app.use('/login', loginRouter)
     app.use('/logout', logoutRouter)
     app.use('/courses', coursesRouter)
+    app.use('/me', meRouter);
 
     app.use('/', homeRouter)
 
