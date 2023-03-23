@@ -32,7 +32,8 @@ class RegisterController {
     const newUser = new User({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      decentra: 1
     });
 
     await newUser.save();  

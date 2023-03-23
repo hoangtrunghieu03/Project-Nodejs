@@ -7,7 +7,7 @@ const { engine } = require('express-handlebars')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
 const session = require('express-session');
-const {authMiddleware} = require('./app/middlewares/AuthMiddleware')
+const { authMiddleware } = require('./app/middlewares/AuthMiddleware')
 
 const route = require('./routes')
 

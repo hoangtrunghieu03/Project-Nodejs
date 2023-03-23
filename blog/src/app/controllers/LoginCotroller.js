@@ -26,8 +26,15 @@ class LoginController {
         res.locals.password = 'Password không đúng';
         return res.status(400).render('login');
       }
+      // req.session.isLoggedIn = true;
       req.session.isLoggedIn = true;
-      req.session.user = user;  
+      req.session.user = user; 
+      
+      if (user.decentra == 0) {
+        req.session.decentra = true;
+      }
+      // console.log(user.decentra)
+
       return res.send(`<script>alert("Chào ${user.name} đã đến với khóa học của tôi"); window.location.href = "/";</script>`);
       // return res.redirect('/');
     } catch (error) {
