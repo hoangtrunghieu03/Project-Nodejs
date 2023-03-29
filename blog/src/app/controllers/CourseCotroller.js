@@ -5,13 +5,56 @@ class CourseController {
     //[GET] .courses/:slug
     show(req, res, next) {
         Course.findOne({ slug: req.params.slug })
-            .then((course) =>
+            .populate('comments.userId')
+            .then((course) => {
                 res.render('courses/show', {
-                    course: mongooseToObject(course),
-                }),
-            )
+                    course: course.toObject(),
+                    comments: course.comments.map((comment) => {
+                        const user = comment.userId.toObject();
+                        return {
+                            ...comment.toObject(),
+                            user: {
+                                name: user.name,
+                                email: user.email,
+                            },
+                        };
+                    }),
+                });
+            })
             .catch(next);
+        }
+
+    //[POST] .courses/:slug/comment
+    async comment(req, res) {
+        try {
+            const userId = req.session.user._id;
+            const content = req.body.content;
+
+            const course = await Course.findOne({ slug: req.params.slug });
+            
+            if (!course) {
+                // handle error when course is not found
+            }
+
+            if (!course.comments) {
+                course.comments = [];
+            }
+
+            const newComment = {
+                userId: userId,
+                content: content
+            };
+
+            course.comments.push(newComment);
+            await course.save();
+
+            res.redirect(`/courses/${req.params.slug}`);
+        } catch (error) {
+            console.error(error);
+            res.redirect('/');
+        }
     }
+      
 
     // [GET] /courses/create
     create(req, res, next) {

@@ -13,14 +13,12 @@ class LoginController {
     const { email, password } = req.body;
       
     try {
-      // Tìm kiếm người dùng với email được cung cấp
       const user = await User.findOne({ email });
       if (!user) {
         res.locals.email = 'Email không đúng';
         return res.status(400).render('login');
       }
       
-      // Kiểm tra tính hợp lệ của mật khẩu
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         res.locals.password = 'Password không đúng';

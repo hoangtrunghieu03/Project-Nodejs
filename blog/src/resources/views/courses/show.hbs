@@ -10,12 +10,34 @@
                 width='1024'
                 height='576'
                 src='https://www.youtube.com/embed/{{course.videoId}}'
-                title='The Soul Music Of Soobin | Những Ca Khúc Đi Cùng Soobin Hoàng Sơn'
+                title='{{course.name}}'
                 frameborder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 allowfullscreen
             ></iframe>
             <p>{{course.description}}</p>
+
+            {{#if course.comments.length}}
+            <h2>Comments:</h2>
+            <ul>
+                {{#each course.comments}}
+                <li>
+                    <strong>{{this.userId.name}}</strong>: {{this.content}}
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <p>No comments yet.</p>
+            {{/if}}
+            
+            <h2>Comment</h2>
+            <form action="/courses/{{course.slug}}/comment" method="POST">
+                <div class="form-group">
+                    <label for="content">Add a comment:</label>
+                    <textarea id="content" name="content" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
 </div>
