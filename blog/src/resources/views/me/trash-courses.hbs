@@ -1,49 +1,51 @@
-<div class='container mt-4'>
+{{#if decentra}}
+    <div class='container mt-4' style=" padding-top: 70px">
 
-    <dir>
-        <a href="/me/stored/courses">Quay lại</a>
-        <h3>Thùng rác của tôi</h3>
-    </dir>
+        <dir>
+            <a href="/me/stored/courses">Quay lại</a>
+            <h3>Thùng rác của tôi</h3>
+        </dir>
 
-    <table class='table'>
-        <thead>
-            <tr>
-                <th scope='col'>#</th>
-                <th scope='col'>Tên khóa học</th>
-                <th scope='col'>Mô tả khóa học</th>
-                <th scope='col'>Thời gian tạo</th>
-                <th scope='col' colspan='2'></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each courses}}
+        <table class='table'>
+            <thead>
                 <tr>
-                    <th scope='row'>{{sum @index 1}}</th>
-                    <td>{{this.name}}</td>
-                    <td>{{this.description}}</td>
-                    <td>{{this.createdAt}}</td>
-                    <td>
-                        <a
-                            href=''
-                            class='btn btn-link btn-restore'
-                            data-id="{{this._id}}"
-                        >Khôi phục</a>
-                    </td>
-                    <td>
-                        <a href='#' class='btn btn-link' data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Xóa vĩnh viễn</a>
-                    </td>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Tên khóa học</th>
+                    <th scope='col'>Mô tả khóa học</th>
+                    <th scope='col'>Thời gian tạo</th>
+                    <th scope='col' colspan='2'></th>
                 </tr>
+            </thead>
+            <tbody>
+                {{#each courses}}
+                    <tr>
+                        <th scope='row'>{{sum @index 1}}</th>
+                        <td>{{this.name}}</td>
+                        <td>{{this.description}}</td>
+                        <td>{{this.createdAt}}</td>
+                        <td>
+                            <a
+                                href=''
+                                class='btn btn-link btn-restore'
+                                data-id="{{this._id}}"
+                            >Khôi phục</a>
+                        </td>
+                        <td>
+                            <a href='#' class='btn btn-link' data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Xóa vĩnh viễn</a>
+                        </td>
+                    </tr>
 
-                {{else}}
-                <tr>
-                    <td colspan="5" class="text-center">
-                        Không có khóa học nào được xóa. 
-                    </td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
+                    {{else}}
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            Không có khóa học nào được xóa. 
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}
 
 {{!-- Confirm delete --}}
 

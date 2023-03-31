@@ -1,43 +1,54 @@
-<div class='mt-4'>
+<div class='mt-5 container' style=" padding-top: 70px">
     <div class='row'>
         <div class='col-lg-3'>
-            <button>Học Ngay</button>
+            <img src="{{course.image}}" class="img-fluid rounded-start" alt="...">
         </div>
 
-        <div class='col-lg-9'>
-            <h2>{{course.name}}</h2>
-            <iframe
-                width='1024'
-                height='576'
-                src='https://www.youtube.com/embed/{{course.videoId}}'
-                title='{{course.name}}'
-                frameborder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowfullscreen
-            ></iframe>
-            <p>{{course.description}}</p>
+        <div class='col-lg-8'>
+            <div class="card-body">
+                <h2 class="card-title mt-4">{{course.name}}</h2>
+                <p class="card-text mt-4">{{course.description}}</p>
+            </div>
 
-            {{#if course.comments.length}}
-            <h2>Comments:</h2>
-            <ul>
-                {{#each course.comments}}
-                <li>
-                    <strong>{{this.userId.name}}</strong>: {{this.content}}
-                </li>
-                {{/each}}
-            </ul>
-            {{else}}
-            <p>No comments yet.</p>
-            {{/if}}
-            
-            <h2>Comment</h2>
-            <form action="/courses/{{course.slug}}/comment" method="POST">
-                <div class="form-group">
-                    <label for="content">Add a comment:</label>
-                    <textarea id="content" name="content" class="form-control" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div class="comment mt-5">
+                {{#if course.comments.length}}
+                
+                    {{#each course.comments}}
+                    <div class="card-body p-4">
+                        <h4 class="mb-0">Recent comments</h4>
+                        <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
+
+                        <div class="d-flex flex-start">
+                        <img class="rounded-circle shadow-1-strong me-3" src="/img/img1.jpg" alt="avatar" width="50" height="50" />
+                        <div>
+                            <h6 class="fw-bold mb-1">{{this.userId.name}}</h6>
+                            <div class="d-flex align-items-center mb-3">
+                                <p class="mb-0">
+                                    {{formatDate this.createdAt 'DD/MM/YYYY, hh:mm A'}}
+                                </p>
+                            </div>
+                            <p>{{this.content}}</p>
+                        </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                
+                {{else}}
+                <p>No comments yet.</p>
+                {{/if}}
+                <form action="/courses/{{course.slug}}/comment" method="POST">
+                    <div class="form-group">
+                        <label for="content">Add a comment:</label>
+                        <textarea id="content" name="content" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Comment</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+
+<script>
+
+</script>

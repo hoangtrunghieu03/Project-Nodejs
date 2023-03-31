@@ -14,9 +14,10 @@ const CommentSchema = new Schema(
 const Course = new Schema(
     {
         name: { type: String, required: true },
+        title: { type: String },
         description: { type: String },
         image: { type: String },
-        videoId: { type: String, required: true },
+        // videoId: { type: String, required: true },
         slug: { type: String, slug: 'name', unique: true },
         comments: [CommentSchema],
     },

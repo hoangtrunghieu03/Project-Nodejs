@@ -1,41 +1,56 @@
-<div class='container mt-4'>
-    <h3>Cập nhật khóa học</h3>
+{{#if decentra}}
+    <div class='container mt-4' style=" padding-top: 70px">
+        <h3>Cập nhật khóa học</h3>
 
-    <form
-        class='mt-4'
-        method='post'
-        action='/courses/{{course._id}}?_method=PUT'
-    >
-        <div class='form-group'>
-            <label for='name'>Tên khóa học</label>
-            <input
-                type='text'
-                class='form-control'
-                value='{{course.name}}'
-                id='name'
-                name='name'
-            />
-        </div>
-        <div class='form-group'>
-            <label for='description'>Mô tả</label>
-            <textarea
-                type='text'
-                class='form-control'
-                id='description'
-                name='description'
-            >{{course.description}}</textarea>
-        </div>
-        <div class='form-group'>
-            <label for='videoId'>Video ID</label>
-            <input
-                type='text'
-                class='form-control'
-                value='{{course.videoId}}'
-                id='videoId'
-                name='videoId'
-            />
-        </div>
+        <form
+            class='mt-4'
+            method='post'
+            action='/courses/{{course._id}}?_method=PUT'
+        >
+            <div class='form-group'>
+                <label for='name'>Tên sách</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    value='{{course.name}}'
+                    id='name'
+                    name='name'
+                />
+            </div>
 
-        <button type='submit' class='btn btn-primary'>Cập nhật</button>
-    </form>
-</div>
+            <div class='form-group'>
+                <label for='name'>Tiêu đề</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    value='{{course.title}}'
+                    id='title'
+                    name='title'
+                />
+            </div>
+
+            <div class='form-group'>
+                <label for='description'>Mô tả</label>
+                <textarea
+                    type='text'
+                    class='form-control'
+                    id='description'
+                    name='description'
+                >{{course.description}}</textarea>
+            </div>
+            <div class='form-group'>
+                <label for='videoId'>Link image</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    value='{{course.image}}'
+                    id='videoId'
+                    name='videoId'
+                />
+            </div>
+
+            <button type='submit' class='btn btn-primary'>Cập nhật</button>
+        </form>
+    </div>
+
+{{/if}}

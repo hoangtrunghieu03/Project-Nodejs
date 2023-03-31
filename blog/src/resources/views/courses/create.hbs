@@ -1,32 +1,40 @@
 {{!-- <h1>Xin chào, {{user.name}}!</h1>
 <p>Email của bạn là: {{user.email}}</p> --}}
-<div class='container mt-4'>
-    <h3>Đăng khóa học</h3>
+{{#if decentra}}
+    <div class='container mt-4' style=" padding-top: 70px">
+        <h3>Đăng khóa học</h3>
 
-    <form method='POST' action='/courses/store'>
-        <div class='form-group'>
-            <label for='name'>Tên khóa học</label>
-            <input type='text' class='form-control' id='name' name='name' />
-        </div>
-        <div class='form-group'>
-            <label for='description'>Mô tả</label>
-            <input
-                type='text'
-                class='form-control'
-                id='description'
-                name='description'
-            />
-        </div>
-        <div class='form-group'>
-            <label for='videoId'>Video ID</label>
-            <input
-                type='text'
-                class='form-control'
-                id='videoId'
-                name='videoId'
-            />
-        </div>
+        <form method='POST' action='/courses/store'>
+            <div class='form-group'>
+                <label for='name'>Tên sách</label>
+                <input type='text' class='form-control' id='name' name='name' />
+            </div>
+            <div class='form-group'>
+                <label for='title'>Tiêu đề</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    id='title'
+                    name='title'
+                />
+            </div>
 
-        <button type='submit' class='btn btn-primary'>Thêm khóa học</button>
-    </form>
-</div>
+            <div class='form-group'>
+                <label for='description'>Mô tả</label>
+                <textarea id="description" name="description" class="form-control" rows="3" description></textarea>
+            </div>
+
+            <div class='form-group'>
+                <label for='image'>Link image</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    id='image'
+                    name='image'
+                />
+            </div>
+
+            <button type='submit' class='btn btn-primary'>Thêm khóa học</button>
+        </form>
+    </div>
+{{/if}}

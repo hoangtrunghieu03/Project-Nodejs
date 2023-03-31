@@ -47,8 +47,8 @@ class CourseController {
 
             course.comments.push(newComment);
             await course.save();
-
-            res.redirect(`/courses/${req.params.slug}`);
+            
+            res.redirect('back');
         } catch (error) {
             console.error(error);
             res.redirect('/');
@@ -62,8 +62,17 @@ class CourseController {
     }
 
     // [POST] /courses/store
+    
+    // store(req, res, next) {
+    //     req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
+    //     const course = new Course(req.body);
+    //     course
+    //         .save()
+    //         .then(() => res.redirect('/me/stored/courses'))
+    //         .catch((error) => {});
+    // }
+
     store(req, res, next) {
-        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const course = new Course(req.body);
         course
             .save()
