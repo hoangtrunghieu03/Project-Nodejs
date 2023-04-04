@@ -1,6 +1,6 @@
 
 <!-- Section: Design Block -->
-<section class="background-radial-gradient overflow-hidden login">
+<div class="background-radial-gradient overflow-hidden login">
   <style>
     .login {
       padding: 40px 0 101px;
@@ -67,17 +67,19 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form  method="post" action="/login">
+            <form  method="post">
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" />
                 <label class="form-label" for="form3Example3">Email address</label>
+                <input id="email" type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                <p id="emailError" style="color:red;"></p>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
                 <label class="form-label" for="form3Example4">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                <p id="passwordError" style="color:red;"></p>
               </div>
 
               <!-- Submit button -->
@@ -86,15 +88,63 @@
               </button>
 
               <!-- Register buttons -->
+            </form>
               <div class="text-center">
                 <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="./register"
                       style="color: #393f81;">Register here</a></p>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 <!-- Section: Design Block -->
+
+
+
+<script>
+  const form = document.querySelector('form');
+
+  form.addEventListener('click', (evant) => {
+    const email = document.querySelector('#email')
+    const password = document.querySelector('#password')
+
+    const emailError = document.querySelector('#emailError')
+    const passwordError = document.querySelector('#passwordError');
+
+
+    let formIsValid = true;
+
+    if (email.value.trim() === '') {
+      emailError.textContent = 'Email is required';
+      formIsValid = false;
+    } else if (!isValidEmail(email.value.trim())) {
+      emailError.textContent = 'Please enter a valid email address';
+      formIsValid = false;
+    } else {
+      emailError.textContent = '';
+    }
+
+    if (password.value.trim() === '') {
+      passwordError.textContent = 'Fullname is required';
+      formIsValid = false; // nếu có lỗi validation thì gán giá trị false cho biến kiểm tra
+    } else {
+      passwordError.textContent = '';
+    }
+
+    if (formIsValid == false) {
+      event.preventDefault(); // nếu có lỗi validation thì ngăn chặn form được gửi đi
+    } else {
+      form.action = '/login'
+      from.submit()
+    }
+    
+
+  })
+
+  function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+</script>

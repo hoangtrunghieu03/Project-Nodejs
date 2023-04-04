@@ -11,12 +11,12 @@
             </div>
 
             <div class="comment mt-5">
+                <h4 class="mb-0">Recent comments</h4>
+                <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
                 {{#if course.comments.length}}
                 
                     {{#each course.comments}}
                     <div class="card-body p-4">
-                        <h4 class="mb-0">Recent comments</h4>
-                        <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
 
                         <div class="d-flex flex-start">
                         <img class="rounded-circle shadow-1-strong me-3" src="/img/img1.jpg" alt="avatar" width="50" height="50" />
@@ -24,7 +24,7 @@
                             <h6 class="fw-bold mb-1">{{this.userId.name}}</h6>
                             <div class="d-flex align-items-center mb-3">
                                 <p class="mb-0">
-                                    {{formatDate this.createdAt 'DD/MM/YYYY, hh:mm A'}}
+                                    {{formatDate this.createdAt 'DD/MM/YYYY, HH:mm A'}}
                                 </p>
                             </div>
                             <p>{{this.content}}</p>
@@ -34,7 +34,7 @@
                     {{/each}}
                 
                 {{else}}
-                <p>No comments yet.</p>
+                <p class="ml-3">No comments yet.</p>
                 {{/if}}
                 <form action="/courses/{{course.slug}}/comment" method="POST">
                     <div class="form-group">

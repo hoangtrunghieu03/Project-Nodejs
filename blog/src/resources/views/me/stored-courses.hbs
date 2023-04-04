@@ -43,7 +43,7 @@
                         <th scope='row'>{{sum @index 1}}</th>
                         <td>{{this.name}}</td>
                         <td>{{this.description}}</td>
-                        <td>{{this.createdAt}}</td>
+                        <td>{{formatDate this.createdAt 'DD/MM/YYYY, HH:mm A'}}</td>
                         <td>
                             <a
                                 style=" text-decoration: none;"
@@ -86,7 +86,7 @@
         <p>Bạn chắc chắn muốn xóa khóa học này?</p>
       </div>
       <div class="modal-footer">
-        <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa bỏ</button>
+        <button type="button" class="btn btn-danger">Xóa bỏ</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
       </div>
     </div>

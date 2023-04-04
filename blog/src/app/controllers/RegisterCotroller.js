@@ -10,19 +10,19 @@ class RegisterController {
 
   //[POST] /register
   async checkregister(req, res) {
-    const {name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       res.locals.email = 'Email đã tồn tại';
       return res.status(400).render('register');
     }
-    
+
     if (password !== confirmPassword) {
       res.locals.confirmPassword = 'Password không khớp';
       return res.status(400).render('register');
     }
-
+    
     const hashedPassword = await bcrypt.hash( password, 10);
       
     const newUser = new User({
@@ -40,3 +40,4 @@ class RegisterController {
 }
 
 module.exports = new RegisterController();
+

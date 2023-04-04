@@ -1,41 +1,6 @@
-{{!-- <html>
-<head>
-  <title>{{title}}</title>
-</head>
-<body>
-  <form class="form1" action="/register" method="POST" >
-    <h1>Đăng ký</h1>
 
-    <div class="form-group">
-      <label for="exampleInputFullname">Full Name</label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="FullName">
-    </div>
 
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <p>{{email}}</p>
-
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-    </div>
-    
-    <div class="form-group">
-      <label for="exampleInputPassword1">Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Password">
-    </div>
-    <p>{{confirmPassword}}</p>
-
-    <button type="submit" class="btn btn-primary">Đăng ký</button>
-  </form>
-  <p class="form-register">Đăng nhập tài khoản: <a href="./login">Đăng nhập</a></p>
-
-</body>
-</html> --}}
-
-<section class="background-radial-gradient overflow-hidden login">
+<div class="background-radial-gradient overflow-hidden login">
   <style>
     .login {
       padding-top: 27px;
@@ -106,46 +71,118 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form action="/register" method="POST">
+            <form  method="POST">
               <div class="form-outline mb-4">
-                <input type="text" class="form-control" id="name" name="name" placeholder="FullName" />
                 <label class="form-label" for="form3Example3">Fullname</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="FullName" />
+                <p id="nameError" style="color:red;"></p>
               </div>
 
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <p>{{email}}</p>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>
                 <label class="form-label" for="form3Example3">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+                <p>{{email}}</p>
+                <p id="emailError" style="color:red;"></p>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
                 <label class="form-label" for="form3Example4">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+                <p id="passwordError" style="color:red;"></p>
               </div>
 
               <div class="form-outline mb-4">
                 <p>{{confirmPassword}}</p>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"/>
                 <label class="form-label" for="form3Example4">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"/>
+                <p id="confirmPasswordError" style="color:red;"></p>
               </div>
 
               <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block mb-4">
+              <button id="submit" type="submit" class="btn btn-primary btn-block mb-4">
                 Sign up
               </button>
 
               <!-- Register buttons -->
+            </form>
               <div class="text-center">
                 <p>or sign up with: <a href="./login"
                       style="color: #393f81;">Login</a></p>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 <!-- Section: Design Block -->
+
+<script>
+  const form = document.querySelector('form');
+
+
+  form.addEventListener('click', (event) => {
+    const name = document.querySelector('#name');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirmPassword');
+
+    const nameError = document.querySelector('#nameError');
+    const emailError = document.querySelector('#emailError');
+    const passwordError = document.querySelector('#passwordError');
+    const confirmPasswordError = document.querySelector('#confirmPasswordError');
+
+    let formIsValid = true; // khởi tạo biến kiểm tra validation là false
+
+    if (name.value.trim() === '') {
+      nameError.textContent = 'Fullname is required';
+      formIsValid = false; // nếu có lỗi validation thì gán giá trị false cho biến kiểm tra
+    } else {
+      nameError.textContent = '';
+    }
+
+    if (email.value.trim() === '') {
+      emailError.textContent = 'Email is required';
+      formIsValid = false;
+    } else if (!isValidEmail(email.value.trim())) {
+      emailError.textContent = 'Please enter a valid email address';
+      formIsValid = false;
+    } else {
+      emailError.textContent = '';
+    }
+
+    if (password.value.trim() === '') {
+      passwordError.textContent = 'Password is required';
+      formIsValid = false;
+    } else if (password.value.length < 6) {
+      passwordError.textContent = 'Password must be at least 6 characters long';
+      formIsValid = false;
+    } else {
+      passwordError.textContent = '';
+    }
+
+    if (confirmPassword.value.trim() === '') {
+      confirmPasswordError.textContent = 'Confirm password is required';
+      formIsValid = false;
+    } else if (confirmPassword.value.trim() !== password.value.trim()) {
+      confirmPasswordError.textContent = 'Passwords do not match';
+      formIsValid = false;
+    } else {
+      confirmPasswordError.textContent = '';
+    }
+
+    if (!formIsValid) {
+      event.preventDefault(); // nếu có lỗi validation thì ngăn chặn form được gửi đi
+    } else {
+      form.action = '/register'
+      from.submit()
+    }
+  });
+
+  function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+</script>
