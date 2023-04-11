@@ -5,7 +5,10 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema(
     {
-        userId: { type: Schema.Types.ObjectId, ref: 'User' },
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
         content: { type: String, required: true },
         createdAt: { type: Date, default: Date.now }
     }
@@ -17,7 +20,6 @@ const Course = new Schema(
         title: { type: String },
         description: { type: String },
         image: { type: String },
-        // videoId: { type: String, required: true },
         slug: { type: String, slug: 'name', unique: true },
         comments: [CommentSchema],
     },

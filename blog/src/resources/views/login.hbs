@@ -67,7 +67,7 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form  method="post">
+            <form  method="post" name="checklogin">
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">Email address</label>
@@ -104,9 +104,9 @@
 
 
 <script>
-  const form = document.querySelector('form');
+  const formlogin = document.forms['checklogin'];
 
-  form.addEventListener('click', (evant) => {
+  formlogin.addEventListener('click', (evant) => {
     const email = document.querySelector('#email')
     const password = document.querySelector('#password')
 
@@ -136,8 +136,8 @@
     if (formIsValid == false) {
       event.preventDefault(); // nếu có lỗi validation thì ngăn chặn form được gửi đi
     } else {
-      form.action = '/login'
-      from.submit()
+      formlogin.action = '/login'
+      formlogin.submit()
     }
     
 

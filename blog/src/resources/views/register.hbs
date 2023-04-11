@@ -71,7 +71,7 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form  method="POST">
+            <form  method="POST" name="checkregiter">
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">Fullname</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="FullName" />
@@ -120,10 +120,10 @@
 <!-- Section: Design Block -->
 
 <script>
-  const form = document.querySelector('form');
+  const formregiter = document.forms['checkregiter']
 
 
-  form.addEventListener('click', (event) => {
+  formregiter.addEventListener('click', (event) => {
     const name = document.querySelector('#name');
     const email = document.querySelector('#email');
     const password = document.querySelector('#password');
@@ -176,8 +176,8 @@
     if (!formIsValid) {
       event.preventDefault(); // nếu có lỗi validation thì ngăn chặn form được gửi đi
     } else {
-      form.action = '/register'
-      from.submit()
+      formregiter.action = '/register'
+      formregiter.submit()
     }
   });
 
