@@ -3,29 +3,35 @@ const { mongooseToObject } = require('../../util/mongoose');
 
 class CourseController {
     //[GET] .courses/:slug
-        show(req, res, next) {
-            Course.findOne({ slug: req.params.slug })
-                .populate({
-                    path: 'comments.userId',
-                    options: { strictPopulate: false }
-                })
-                .then((course) => {
-                    res.render('courses/show', {
-                        course: course.toObject(),
-                        comments: course.comments.map((comment) => {
-                            const user = comment.userId.toObject();
-                            return {
-                                ...comment.toObject(),
-                                user: {
-                                    name: user.name,
-                                    email: user.email,
-                                },
-                            };
-                        }),
-                    });
-                })
-                .catch(next);
+    show(req, res, next) {
+        Course.findOne({ slug: req.params.slug })
+          .populate("comments.userId")
+          .then((course) => {
+            if (!course) {
+              return res.status(404).send('Course not found');
             }
+      
+            const comments = course.comments.map((comment) => {
+              const user = comment.userId.toObject();
+              return {
+                ...comment.toObject(),
+                user: {
+                  name: user.name,
+                  email: user.email,
+                },
+              };
+            });
+      
+            return res.render("courses/show", {
+              course: course.toObject(),
+              comments: comments,
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+            next(err);
+          });
+      }
 
     //[POST] .courses/:slug/comment
     async comment(req, res) {
