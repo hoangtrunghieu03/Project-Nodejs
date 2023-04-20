@@ -72,14 +72,14 @@
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">Email address</label>
                 <input id="email" type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" />
-                <p id="emailError" style="color:red;"></p>
+                <p id="emailError" style="color:red;">{{email}}</p>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example4">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
-                <p id="passwordError" style="color:red;"></p>
+                <p id="passwordError" style="color:red;">{{password}}</p>
               </div>
 
               <!-- Submit button -->
@@ -127,7 +127,7 @@
     }
 
     if (password.value.trim() === '') {
-      passwordError.textContent = 'Fullname is required';
+      passwordError.textContent = 'Password is required';
       formIsValid = false; // nếu có lỗi validation thì gán giá trị false cho biến kiểm tra
     } else {
       passwordError.textContent = '';

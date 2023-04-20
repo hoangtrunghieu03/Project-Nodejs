@@ -17,12 +17,6 @@ class RegisterController {
       res.locals.email = 'Email đã tồn tại';
       return res.status(400).render('register');
     }
-
-    if (password !== confirmPassword) {
-      res.locals.confirmPassword = 'Password không khớp';
-      return res.status(400).render('register');
-    }
-    
     const hashedPassword = await bcrypt.hash( password, 10);
       
     const newUser = new User({
